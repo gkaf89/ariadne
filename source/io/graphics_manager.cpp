@@ -36,9 +36,9 @@
 namespace Ariadne {
 
 GraphicsBackend default_backend() {
-    #if defined HAVE_CAIRO_H
+    #if defined(HAVE_CAIRO_H)
         return CairoGraphicsBackend();
-    #elif defined HAVE_GNUPLOT_H
+    #elif defined(HAVE_GNUPLOT_H)
         return GnuplotGraphicsBackend();
     #else
         return NullGraphicsBackend();

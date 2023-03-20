@@ -1,12 +1,10 @@
-
-
-# Ariadne <img align="right" src="http://www.ariadne-cps.org/img/ariadne-transparent.png" alt="Ariadne" width="80"/> 
+# Ariadne <img align="right" src="http://www.ariadne-cps.org/img/ariadne-transparent.png" alt="Ariadne" width="80"/>
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Release Status](https://github.com/ariadne-cps/ariadne/workflows/Release/badge.svg)](https://github.com/ariadne-cps/ariadne/actions/workflows/release.yml) [![Debug Status](https://github.com/ariadne-cps/ariadne/workflows/Debug/badge.svg)](https://github.com/ariadne-cps/ariadne/actions/workflows/debug.yml) [![codecov](https://codecov.io/gh/ariadne-cps/ariadne/branch/master/graph/badge.svg)](https://codecov.io/gh/ariadne-cps/ariadne)
 
 Ariadne is a tool for reachability analysis and model checking of hybrid systems. Additionally, it is a framework for rigorous computation featuring arithmetic, linear algebra, calculus, geometry, algebraic and differential equations, and optimization solvers.
 
-## Installation ##
+## Installation
 
 The command-line installation instructions are presented for Debian Linux systems and derivatives (using apt) and macOS systems (using Homebrew). However, openSUSE and Fedora are known to be working when using their own package managers. Windows installations are not supported yet.
 
@@ -120,6 +118,26 @@ $ cmake --build . --target doc
 
 then you can access the built documentation from the `docs/html/index.html` file in the build directory.
 
+#### Configuration and installation options
+
+A custom back-end can be selected during the build configuration, for instance:
+```
+cmake -S . -B build -G <beck-end generator> 
+```
+In case a multi-configuration generator is available (e.g. <back-end generator> = 'Ninja Multi-Config'), then the release compilation variable (CMAKE_BUILD_TYPE=Release) is set automatically at build time by selecting the appropriate configuration type:
+```bash
+cmake --build build --config Release
+```
+
+If any of the dependencies are managed manually, then the installation directories of the dependencies must be provided in a semicolon (;) separated list during the build configuration, for instance:
+```
+cmake -S . -B build -D CMAKE_PREFIX_PATH:PATH="<MPFR installation directory>;<GMP installation directory>;..."
+```
+
+Finally, custom installation directories can be selected for the Ariadne C++ and Python interfaces:
+```
+cmake -S . -B build -D CMAKE_INSTALL_PREFIX:PATH=<Ariadne installation directory>/cxx -D PYTHON_BINDINGS_INSTALL_DIR:PATH=<Ariadne installation directory>/python
+```
 
 ### Installing globally
 
@@ -143,7 +161,7 @@ The tutorials directory contains two CMake projects that rely on a correct insta
 
 Due to limitations of the C++ standard library on macOS since C++11, you won't be able to build an executable with GCC if the Ariadne library has been built using Clang, and viceversa. Hence on macOS you shall use the same compiler for both Ariadne and any projects that depend on it. If Ariadne comes from the Homebrew package, then it has been built using g++ 10.
 
-## Contribution guidelines ##
+## Contribution guidelines
 
 If you would like to contribute to Ariadne, please contact the developers. We are especially interested to hear how the documentation and user interface could be improved.
 

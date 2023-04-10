@@ -17,3 +17,9 @@ submodules/.symbolic
 
 .pytest_cache
 __pycache__
+
+# Editor scratch files and IDE setup
+## Qt Creator setup file
+CMakeLists.txt.user
+## VIM scratch files
+.*.swp

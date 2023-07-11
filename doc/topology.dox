@@ -38,7 +38,7 @@ For details on how this is implemented in %Ariadne, see the \ref TopologyModule 
 
 \section computable_topological_spaces_section Computable Topological Spaces
 
-As defined in Weihrauch (2000), a <em>computable topological space</em> consists of a topological space \f$(X,\tau)\f$ with countable basis \f$\beta\f$, with some partial surjective labelling function \f$nu:\Sigma^*\psfto \beta\f$.
+As defined in Weihrauch (2000), a <em>computable topological space</em> consists of a topological space \f$(X,\tau)\f$ with countable basis \f$\beta\f$, with some partial surjective labelling function \f$\nu:\Sigma^*\psfto \beta\f$.
 The <em>standard representation</em> \f$\delta\f$ of \f$X\f$ lists all words \f$w\in\dom(\nu)\f$ such that \f$x\in\nu(w)\f$.
 
 For technical reasons, we require \f$\emptyset\in\beta\f$ and that \f$\dom(\nu)\f$ is recursively-enumerable (i.e. we can effectively list all elements of \f$\beta\f$).

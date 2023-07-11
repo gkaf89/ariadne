@@ -1,0 +1,7 @@
+set(CMAKE_INSTALL_PREFIX "$ENV{HOME}/opt/ariadne/cxx" CACHE PATH "Local CXX installation path")
+set(PYTHON_BINDINGS_INSTALL_DIR "$ENV{HOME}/opt/ariadne/python" CACHE PATH "Local Python installation path")
+
+set(CMAKE_PREFIX_PATH "$ENV{HOME}/opt/mpfr;$ENV{HOME}/opt/gmp" CACHE PATH "Search for locally installed MPFR and GMP librarires")
+
+# To configure for a release build call:
+# $ cmake -S . -B build/Release -G 'Ninja' -D CMAKE_BUILD_TYPE:STRING=Release -C CMakeCache.txt

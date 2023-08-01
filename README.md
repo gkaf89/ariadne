@@ -121,7 +121,7 @@ then you can access the built documentation from the `docs/html/index.html` file
 #### Configuration and installation options
 
 A custom back-end can be selected during the build configuration, for instance:
-```
+```bash
 cmake -S . -B build -G <beck-end generator> 
 ```
 In case a multi-configuration generator is available (e.g. <back-end generator> = 'Ninja Multi-Config'), then the release compilation variable (CMAKE_BUILD_TYPE=Release) is set automatically at build time by selecting the appropriate configuration type:
@@ -130,14 +130,28 @@ cmake --build build --config Release
 ```
 
 If any of the dependencies are managed manually, then the installation directories of the dependencies must be provided in a semicolon (;) separated list during the build configuration, for instance:
-```
+```bash
 cmake -S . -B build -D CMAKE_PREFIX_PATH:PATH="<MPFR installation directory>;<GMP installation directory>;..."
 ```
 
 Finally, custom installation directories can be selected for the Ariadne C++ and Python interfaces:
-```
+```bash
 cmake -S . -B build -D CMAKE_INSTALL_PREFIX:PATH=<Ariadne installation directory>/cxx -D PYTHON_BINDINGS_INSTALL_DIR:PATH=<Ariadne installation directory>/python
 ```
+
+#### Using configuration presets
+
+The default options in `CMakePresets.json`, defined in a configuration named `default-config`, are the following:
+1. `$ENV{HOME}/opt/ariadne/cxx` of type `PATH`: Local CXX installation path
+1. `$ENV{HOME}/opt/ariadne/python` of type `PATH`: Local Python installation path
+1. `$ENV{HOME}/opt/mpfr;$ENV{HOME}/opt/gmp` of type `PATH`: Search path for locally installed MPFR and GMP librarires
+1. `Release` of type `STRING`: Sets default output configuration type to release
+
+To build with the default options,
+```bash
+cmake -S . --presets default-config
+```
+and then the usual commands can be used to build and install components.
 
 ### Installing globally
 

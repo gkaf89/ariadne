@@ -6,4 +6,4 @@ set(CMAKE_PREFIX_PATH "$ENV{HOME}/opt/mpfr;$ENV{HOME}/opt/gmp" CACHE PATH "Searc
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Set configurnation type to release")
 
 # To configure for a release build call:
-# $ cmake -S . -B build/Release -G 'Ninja' -C CMakeCache.txt
+# $ cmake -S . -B build/Release -G 'Ninja' -C CMakeCache.Release.txt

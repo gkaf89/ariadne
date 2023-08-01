@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default-config",
+      "binaryDir": "${sourceDir}/build/Release",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_PREFIX_PATH" : "$env{HOME}/opt/mpfr;$env{HOME}/opt/gmp",
+        "CMAKE_INSTALL_PREFIX": "$env{HOME}/opt/ariadne/cxx",
+        "PYTHON_BINDINGS_INSTALL_DIR": "$env{HOME}/opt/ariadne/python"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default-build",
+      "configurePreset": "default-config"
+    }
+  ]
+}

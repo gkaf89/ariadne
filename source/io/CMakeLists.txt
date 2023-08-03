@@ -9,6 +9,15 @@ add_library(${LIBRARY_NAME} OBJECT
     command_line_interface.cpp
 )
 
+file(GLOB HEADER_FILES
+	LIST_DIRECTORIES FALSE
+	*.hpp
+)
+
+add_custom_target("${LIBRARY_NAME}_headers" SOURCES
+	"${HEADER_FILES}"
+)
+
 foreach(WARN ${LIBRARY_EXCLUSIVE_WARN})
     target_compile_options(${LIBRARY_NAME} PUBLIC -W${WARN})
 endforeach()

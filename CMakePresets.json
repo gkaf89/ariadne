@@ -7,36 +7,38 @@
   },
   "configurePresets": [
     {
-      "name": "default-config",
-      "binaryDir": "${sourceDir}/build/Release",
+      "name": "default",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "generator": "Ninja",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_PREFIX_PATH" : "$env{HOME}/opt/mpfr;$env{HOME}/opt/gmp",
-        "CMAKE_INSTALL_PREFIX": "$env{HOME}/opt/ariadne/Release/cxx",
-        "PYTHON_BINDINGS_INSTALL_DIR": "$env{HOME}/opt/ariadne/Release/python"
+        "CMAKE_BUILD_TYPE": { "type": "String", "value": "$env{PRESET_BUILD_TYPE}" },
+        "CMAKE_PREFIX_PATH" : { "type": "Path", "value": "$env{HOME}/opt/mpfr;$env{HOME}/opt/gmp" },
+        "CMAKE_INSTALL_PREFIX": { "type": "Path", "value": "$env{HOME}/opt/ariadne/$env{PRESET_BUILD_TYPE}/cxx" },
+        "PYTHON_BINDINGS_INSTALL_DIR": { "type": "Path", "value": "$env{HOME}/opt/ariadne/$env{PRESET_BUILD_TYPE}/python" }
+      },
+      "environment": {
+        "PRESET_NAME" : "${presetName}",
+        "PRESET_BUILD_TYPE": "$env{PRESET_NAME}"
       }
     },
     {
-      "name": "debug-config",
-      "binaryDir": "${sourceDir}/build/Debug",
-      "generator": "Ninja",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_PREFIX_PATH" : "$env{HOME}/opt/mpfr;$env{HOME}/opt/gmp",
-        "CMAKE_INSTALL_PREFIX": "$env{HOME}/opt/ariadne/Debug/cxx",
-        "PYTHON_BINDINGS_INSTALL_DIR": "$env{HOME}/opt/ariadne/Debug/python"
-      }
+      "name": "Release",
+      "inherits": "default"
+    },
+    {
+      "name": "Debug",
+      "inherits": "default"
     }
   ],
   "buildPresets": [
     {
-      "name": "default-build",
-      "configurePreset": "default-config"
+      "name": "Release",
+      "configurePreset": "Release"
     },
     {
-      "name": "debug-build",
-      "configurePreset": "debug-config"
+      "name": "Debug",
+      "configurePreset": "Debug"
     }
   ]
 }
